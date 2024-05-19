@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replica-controller
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+    - key: brand
+      operator: In
+      values:
+      - adiddas
+  template:
+    metadata:
+      name: pod2
+      labels:
+        brand: adiddas
+    spec:
+      containers:
+      - name: nginx-cont
+        image: nginx
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 80

@@ -1,0 +1,5 @@
+kubectl get pods
+kubectl get rs
+kubectl apply -f rolling-deployment.yaml
+kubectl get deploy
+kubectl delete deploy dp-controller

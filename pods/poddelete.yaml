@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: delete-task-pod
+spec:
+  containers:
+  - image: codeopsdynamics/deletetask:1
+    name: delete-tasks-container
+    ports:
+    - containerPort: 8000
+      hostPort: 8000
+      name: delete-mapping
+    env:
+    - name: CONNECTION_STRING
+      value: Driver={ODBC Driver 17 for SQL Server};Server=tcp:aksdbserver1.database.windows.net,1433;Database=aksdb;Uid=admin1;Pwd=admin@12345;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;

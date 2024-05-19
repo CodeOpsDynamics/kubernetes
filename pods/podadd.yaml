@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: add-task-pod
+spec:
+  containers:
+  - image: codeopsdynamics/addtask:1
+    name: add-tasks-container
+    ports:
+    - containerPort: 8000
+      hostPort: 8000
+      name: add-mapping
+    env:
+    - name: CONNECTION_STRING
+      value: Driver={ODBC Driver 17 for SQL Server};Server=tcp:aksdbserver1.database.windows.net,1433;Database=aksdb;Uid=admin1;Pwd=admin@12345;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;

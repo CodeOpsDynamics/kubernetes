@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dp-controller
+spec:
+  replicas: 4
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+        - profile
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: profile-pod
+      labels:
+        app: profile
+    spec:
+      containers:
+      - name: profile-container
+        #image: devopsinsiders/profile:v1
+        image: devopsinsiders/profile:v2
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 8000
